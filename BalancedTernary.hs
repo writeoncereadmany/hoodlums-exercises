@@ -1,4 +1,4 @@
-module BalancedTernary where
+module BalancedTernary (BTNum) where
 
 import Data.List
 
@@ -101,7 +101,10 @@ abs' x = case sign x of
   [Minus] -> negate' x
   _ -> x
 
-newtype BTNum = BTNum BtNum
+newtype BTNum = BTNum BtNum deriving Eq
+
+instance Show BTNum where
+  show (BTNum x) = show x
 
 instance Num BTNum where
   (BTNum x) + (BTNum y) = BTNum $ add' x y
@@ -110,3 +113,4 @@ instance Num BTNum where
   abs (BTNum x) = BTNum $ abs' x
   signum (BTNum x) = BTNum $ sign x
   fromInteger x = BTNum $ fromInteger' x
+
